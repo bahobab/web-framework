@@ -147,6 +147,16 @@ function () {
     this.events[eventName] = eventHandlers;
   };
 
+  User.prototype.trigger = function (eventName) {
+    if (!this.events[eventName] || this.events[eventName].length === 0) {
+      return;
+    }
+
+    this.events[eventName].forEach(function (callback) {
+      callback();
+    });
+  };
+
   return User;
 }();
 
@@ -173,7 +183,11 @@ polo.on("change", function () {
 polo.on("change", function () {
   return console.log('yo yo');
 });
-console.log(polo);
+polo.on('hungry', function () {
+  return console.log('Got to eat man...!');
+});
+polo.trigger('change');
+polo.trigger('hungry'); // console.log(polo);
 },{"./models/User":"src/models/User.ts"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
