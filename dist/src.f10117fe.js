@@ -130,14 +130,21 @@ var User =
 function () {
   function User(data) {
     this.data = data;
+    this.events = {};
   }
 
-  User.prototype.get = function (userProp) {
-    return this.data[userProp];
+  User.prototype.get = function (propName) {
+    return this.data[propName];
   };
 
   User.prototype.set = function (userProps) {
     Object.assign(this.data, userProps);
+  };
+
+  User.prototype.on = function (eventName, callback) {
+    var eventHandlers = this.events[eventName] || [];
+    eventHandlers.push(callback);
+    this.events[eventName] = eventHandlers;
   };
 
   return User;
@@ -160,8 +167,13 @@ var polo = new User_1.User({
 polo.set({
   age: 55
 });
-console.log(polo.get('name'));
-console.log(polo.get('age'));
+polo.on("change", function () {
+  return console.log('yo');
+});
+polo.on("change", function () {
+  return console.log('yo yo');
+});
+console.log(polo);
 },{"./models/User":"src/models/User.ts"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
