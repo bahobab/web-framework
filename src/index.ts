@@ -1,8 +1,8 @@
 import { User } from './models/User';
 
-const user = new User({ id: 3 });
+const user = User.buildUser({ id: 3 });
 
-user.set({ name: 'Poloo' });
+user.set({ name: 'Yapi Yapo' });
 
 user.on('save', () => console.log(user));
 // user.set({ name: 'Polo' })
