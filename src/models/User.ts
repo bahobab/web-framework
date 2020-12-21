@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 import { Eventing } from './Eventing';
 import { Sync } from './Sync';
 import { Attributes } from './Attributes';
@@ -28,4 +30,10 @@ export class User {
   get get() {
     return this.attributtes.get;
   }
+
+  set(update: UserProps) {
+    this.attributtes.set(update);
+    this.events.trigger('change');
+  }
+
 }
