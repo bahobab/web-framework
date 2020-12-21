@@ -17,4 +17,15 @@ export class User {
     this.attributtes = new Attributes(attrs);
   }
 
+  get on() {
+    return this.events.on;
+  }
+
+  get trigger() {
+    return this.events.trigger;
+  }
+
+  get get() {
+    return this.attributtes.get;
+  }
 }
