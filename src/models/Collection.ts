@@ -1,9 +1,8 @@
 import axios, {AxiosResponse} from 'axios';
 
-import { User, UserProps } from './User';
 import { Eventing } from './Eventing';
 
-export class UserCollection<T, K> {
+export class Collection<T, K> {
   models: T[] = [];
   events: Eventing = new Eventing();
 
