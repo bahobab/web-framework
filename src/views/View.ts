@@ -1,15 +1,15 @@
-import { User } from '../models/User';
+import { Model } from '../models/Model';
+export abstract class View<T extends Model<K>, K> {
 
-export abstract class View {
   constructor(
     public parent: Element,
-    public user: User
+    public model: T
     ) {
       this.bindModel();
     };
     
     bindModel = (): void => {
-    this.user.on('change', this.render);
+    this.model.on('change', this.render);
   }
 
   abstract eventsMap(): {[key: string]: () => void};

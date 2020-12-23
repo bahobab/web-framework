@@ -1,5 +1,7 @@
 import { View } from './View';
-export class UserForm extends View {
+import { User, UserProps } from '../models/User';
+export class UserForm extends View<User, UserProps> {
+
   eventsMap(): {[key: string]: () => void} {
     return {
       'click:.set-age': this.setAgeClick,
@@ -11,12 +13,12 @@ export class UserForm extends View {
     const input = this.parent.querySelector('input');
 
     if (input) {
-      this.user.set({name: input.value});
+      this.model.set({name: input.value});
     }
   }
 
   setAgeClick = (): void => {
-    this.user.setRandomAge()
+    this.model.setRandomAge()
   }
 
   onH1Hover(): void {
@@ -32,10 +34,10 @@ export class UserForm extends View {
       <div>
         <h1>User Form</h1>
         <div>
-        User Name: ${this.user.get('name')}
+        User Name: ${this.model.get('name')}
         </div>
         <div>
-        User Age: ${this.user.get('age')}
+        User Age: ${this.model.get('age')}
         </div>
         <label>Name: <input/></label>
         <button class="set-name">Click Me</button>
