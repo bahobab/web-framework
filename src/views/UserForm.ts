@@ -32,18 +32,12 @@ export class UserForm extends View<User, UserProps> {
 
   onSaveModelClick = (): void => {
     this.model.save();
-    console.log(this.model);
+    // console.log(this.model);
   }
 
   template = (): string => {
     return `
       <div>
-        <div>
-        User Name: ${this.model.get('name')}
-        </div>
-        <div>
-        User Age: ${this.model.get('age')}
-        </div>
         <label>Name: <input placeholder="${this.model.get('name')}"/></label>
         <div>
         <button class="set-name">Change Name</button>
