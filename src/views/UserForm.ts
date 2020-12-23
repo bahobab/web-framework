@@ -4,12 +4,13 @@ export class UserForm {
   constructor(
     public parent: Element,
     public user: User
-    ) {};
+    ) {
+      this.user.on('change', this.render);
+    };
 
   eventsMap(): {[key: string]: () => void} {
     return {
-      'click:button': this.onButtonClick,
-      'mouseenter:h1': this.onH1Hover
+      'click:#set-age': this.setAgeClick,
     };
   }
 
@@ -25,6 +26,12 @@ export class UserForm {
     }
   }
 
+  setAgeClick = (): void => {
+    this.user.setRandomAge()
+    console.log(this.user);
+    // console.log('set random age');
+  }
+
   onH1Hover(): void {
     console.log('H1 was hovered over');
   }
@@ -33,7 +40,9 @@ export class UserForm {
     console.log('button clicked!')
   }
 
-  template(): string {
+  
+
+  template = (): string => {
     return `
       <div>
         <h1>User Form</h1>
@@ -44,12 +53,14 @@ export class UserForm {
         User Age: ${this.user.get('age')}
         </div>
         <input />
+        <button id="set-age">Set Random Age</button>
         <button>Click Me</button>
       </div>
     `
   };
 
-  render(): void {
+  render = (): void  => {
+    this.parent.innerHTML = '';
     const templateElement = document.createElement('template');
     templateElement.innerHTML = this.template();
 
