@@ -33,7 +33,10 @@ export class UserForm {
 
   setNameClick = (): void => {
     const input = this.parent.querySelector('input');
-    this.user.set({name: input.value});
+
+    if (input) {
+      this.user.set({name: input.value});
+    }
   }
 
   setAgeClick = (): void => {
